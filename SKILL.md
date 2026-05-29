@@ -12,9 +12,12 @@ description: >-
 
 # VibeLand Export
 
+**Version: 1.1.0**
+
 Generate a single `vibeland.json` describing **the current repository / project** so it
 can be uploaded into the [VibeLand](https://vibe-land.c01dkit.com) portal's
-**快速新增（Quick Add）**.
+**快速新增（Quick Add）**. The instructions are agent-agnostic — they work whether this file
+is installed as a Claude Code skill, a Codex prompt, or fed to any other agent CLI.
 
 ## What to do
 
