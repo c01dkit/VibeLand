@@ -30,9 +30,10 @@ is installed as a Claude Code skill, a Codex prompt, or fed to any other agent C
    | Field | How to derive |
    |---|---|
    | `title` | `package.json` → `name`, or `pyproject.toml` / `Cargo.toml` name, else the folder name. Prefer a human-readable name; strip scopes like `@org/`. |
-   | `gitUrl` | `git config --get remote.origin.url`. Convert SSH form `git@host:owner/repo.git` to `https://host/owner/repo`. Empty if no remote. |
+   | `gitUrls` | **Array.** All git remotes: `git remote -v` → unique fetch URLs. Convert SSH `git@host:owner/repo.git` to `https://host/owner/repo`. `[]` if no remote. |
    | `liveUrl` | `package.json` → `homepage`, deployed URL / demo link in README, or a CNAME/`vercel.json`/`netlify.toml` hint. Empty if none. |
-   | `server` | Usually unknown locally — leave empty (the user fills it in). Only set if a deploy config clearly names a host. |
+   | `devServers` | **Array.** Development hosts if clearly named in config/README (e.g. a dev/staging host). Usually `[]` — leave for the user. |
+   | `deployServers` | **Array.** Production/deploy hosts if a deploy config clearly names one. Usually `[]` — leave for the user. |
    | `category` | One short label inferred from the project type, e.g. `Web 应用`, `CLI 工具`, `库 / SDK`, `脚本`, `移动端`. If unsure use `未分类`. |
    | `tags` | Key languages / frameworks detected from deps and file types, e.g. `["react","astro","typescript"]` or `["python","fastapi"]`. Keep ≤ 6, lowercase. |
    | `status` | `live` if there is a working deployed/homepage URL; `archived` if README/git says deprecated or no commits in a long time; otherwise `developing`. |
@@ -40,7 +41,7 @@ is installed as a Claude Code skill, a Codex prompt, or fed to any other agent C
    | `devLog` | A Markdown bullet list of recent progress, from `CHANGELOG.md` if present, else the last ~10 commit subjects via `git log --pretty=format:'- %ad %s' --date=short -n 10`. |
    | `plan` | A Markdown summary of the roadmap/TODO, from a `Roadmap`/`TODO`/`Plan` section in the README or a `TODO.md`. Empty if none. |
 
-   Do **not** invent screenshots, servers, or URLs. Leave a field empty rather than guessing.
+   Do **not** invent screenshots, servers, or URLs. Leave an array empty (`[]`) rather than guessing.
 
 3. **Write `vibeland.json`** at the project root, using this exact shape (single project):
 
@@ -52,9 +53,10 @@ is installed as a Claude Code skill, a Codex prompt, or fed to any other agent C
        "category": "Web 应用",
        "tags": ["astro", "react", "firebase"],
        "status": "developing",
-       "server": "",
+       "devServers": [],
+       "deployServers": [],
        "codePath": "/abs/path/to/repo",
-       "gitUrl": "https://github.com/owner/repo",
+       "gitUrls": ["https://github.com/owner/repo"],
        "liveUrl": "https://example.com",
        "intro": "## 简介\n\n用一句话说明项目做什么…",
        "devLog": "- 2026-05-01 初始化项目\n- 2026-05-10 完成登录",
@@ -66,7 +68,7 @@ is installed as a Claude Code skill, a Codex prompt, or fed to any other agent C
    Rules:
    - `title` is **required** and must be non-empty.
    - `status` must be one of `developing` | `live` | `archived` (defaults to `developing`).
-   - `tags` is an array of strings; `intro` / `devLog` / `plan` are Markdown strings.
+   - `tags` / `gitUrls` / `devServers` / `deployServers` are arrays of strings; `intro` / `devLog` / `plan` are Markdown strings.
    - Output **valid JSON** (UTF-8, no comments, no trailing commas).
 
 4. **Tell the user** the file was written and that they should open VibeLand →
