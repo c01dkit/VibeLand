@@ -4,6 +4,8 @@
 
 [中文](./README.md) · 🔗 [vibe-land.c01dkit.com](https://vibe-land.c01dkit.com)
 
+![VibeLand preview](./hero.png)
+
 ## What is this
 
 VibeLand is a **personal project index portal**.

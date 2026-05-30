@@ -4,6 +4,8 @@
 
 [English](./README.en.md) · 🔗 [vibe-land.c01dkit.com](https://vibe-land.c01dkit.com)
 
+![VibeLand 预览](./hero.png)
+
 ## 这是什么
 
 VibeLand 是一个**个人项目索引门户**。
