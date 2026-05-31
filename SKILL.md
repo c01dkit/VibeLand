@@ -30,6 +30,7 @@ is installed as a Claude Code skill, a Codex prompt, or fed to any other agent C
    | Field | How to derive |
    |---|---|
    | `title` | `package.json` → `name`, or `pyproject.toml` / `Cargo.toml` name, else the folder name. Prefer a human-readable name; strip scopes like `@org/`. |
+   | `summary` | One short sentence (≤ ~40 chars) describing what the project does, from the README's first line / `description`. Used on cards. |
    | `gitUrls` | **Array.** All git remotes: `git remote -v` → unique fetch URLs. Convert SSH `git@host:owner/repo.git` to `https://host/owner/repo`. `[]` if no remote. |
    | `liveUrl` | `package.json` → `homepage`, deployed URL / demo link in README, or a CNAME/`vercel.json`/`netlify.toml` hint. Empty if none. |
    | `devServers` | **Array.** Development hosts if clearly named in config/README (e.g. a dev/staging host). Usually `[]` — leave for the user. |
@@ -50,6 +51,7 @@ is installed as a Claude Code skill, a Codex prompt, or fed to any other agent C
      "vibeland": 1,
      "project": {
        "title": "My Project",
+       "summary": "一句话说明项目做什么",
        "category": "Web 应用",
        "tags": ["astro", "react", "firebase"],
        "status": "developing",
